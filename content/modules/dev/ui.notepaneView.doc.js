@@ -471,19 +471,21 @@
             var admin = m.get("ensemble", {}).first().admin === true;
 
             locs_array.forEach(function(o) {
-                var loc_lens =
-                    $("<div class='location-lens' id_item='"+o.ID+"'>"+self._lens(o)+"</div>");
-                $pane.append(loc_lens);
-
-                if (admin === true) {
-                    loc_lens.contextMenu({menu: "contextmenu_notepaneView"}, function(action, el, pos) {
-                        var $loc = $(el).closest("div.location-lens");
-                        var id_item = $loc.attr("id_item");
-                        if (action === "export-top" || action === "export-all") {
-                            var text = "@import(" + id_item + ", " + ((action === "export-top") ? "top" : "all") + ")";
-                            window.prompt("Copy the text below and insert it as a new annotation to import it.", text);
-                        }
-                    });
+                var c =  m.get("comment", {ID_location: o.ID, id_parent: null}).first();  
+                if (!(c===null || c.body.replace(/\s/g, "") === "")) {  // don't show empty comments
+                    var loc_lens =
+                        $("<div class='location-lens' id_item='"+o.ID+"'>"+self._lens(o)+"</div>");
+                    $pane.append(loc_lens);
+                    if (admin === true) {
+                        loc_lens.contextMenu({menu: "contextmenu_notepaneView"}, function(action, el, pos) {
+                            var $loc = $(el).closest("div.location-lens");
+                            var id_item = $loc.attr("id_item");
+                            if (action === "export-top" || action === "export-all") {
+                                var text = "@import(" + id_item + ", " + ((action === "export-top") ? "top" : "all") + ")";
+                                window.prompt("Copy the text below and insert it as a new annotation to import it.", text);
+                            }
+                        });
+                    }
                 }
             });
 

@@ -199,3 +199,15 @@ color: #909090;
 color: #909090;
 float: right
 }
+
+.highlight {
+    display: none;
+}
+
+.my-highlight {
+    background-color: #F6B3E4;
+}
+
+.other-highlight {
+    background-color: #80EE92;
+}

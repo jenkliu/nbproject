@@ -537,18 +537,28 @@
             h=o.h*s;
             sel_contents = "";
             if (!(model.get("comment", {ID_location: ID, admin: 1}).is_empty())){
-            sel_contents += "<div class='nbicon adminicon' title='An instructor/admin has participated to this thread'/>";
+                sel_contents += "<div class='nbicon adminicon' title='An instructor/admin has participated to this thread'/>";
             }
             if (!(model.get("comment", {ID_location: ID, id_author: me.id}).is_empty())){
-            if (model.get("comment", {ID_location: ID, type: 1}).is_empty()){
-                sel_contents += "<div class='nbicon meicon' title='I participated to this thread'/>";
+                if (model.get("comment", {ID_location: ID, type: 1}).is_empty()){
+                    sel_contents += "<div class='nbicon meicon' title='I participated to this thread'/>";
+                }
+                else{
+                    sel_contents += "<div class='nbicon privateicon' title='I have private comments in this thread'/>";
+                }
             }
-            else{
-                sel_contents += "<div class='nbicon privateicon' title='I have private comments in this thread'/>";
+            var c =  model.get("comment", {ID_location: o.ID, id_parent: null}).first();
+            if (c===null || c.body.replace(/\s/g, "") === "") {    // empty comment, consider it a highlight
+                window.console.log("my id: "+me.id+ "author id: "+c.id_author);
+                if (c.id_author===me.id) {
+                    contents+=("<div class='selection highlight my-highlight' id_item='"+ID+"' style='top: "+t+"px; left: "+l+"px; width: "+w+"px; height: "+h+"px'>"+sel_contents+"</div>");
+                } else {
+                    contents+=("<div class='selection highlight other-highlight' id_item='"+ID+"' style='top: "+t+"px; left: "+l+"px; width: "+w+"px; height: "+h+"px'>"+sel_contents+"</div>");
+                }
+            } else {
+                contents+=("<div class='selection' id_item='"+ID+"' style='top: "+t+"px; left: "+l+"px; width: "+w+"px; height: "+h+"px'>"+sel_contents+"</div>");
             }
-            }
-            contents+=("<div class='selection' id_item='"+ID+"' style='top: "+t+"px; left: "+l+"px; width: "+w+"px; height: "+h+"px'>"+sel_contents+"</div>");
-        }    
+        }
         $("div.material[page="+page+"]>div.selections",  self.element).html(contents).children("div.selection").mouseover(function(evt){
             $.concierge.trigger({type:"note_hover", value: evt.currentTarget.getAttribute("id_item")});
             }).mouseout(function(evt){
