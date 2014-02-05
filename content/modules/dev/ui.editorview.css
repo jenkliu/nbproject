@@ -59,3 +59,11 @@ td.save-cancel {
     vertical-align: top;
     padding-left: 8px;
 }
+
+.highlight-btn {
+    position: absolute;
+    bottom: -25px;  
+    right: 0px;
+    border: 1px solid;
+    padding: 3px 5px;
+}
