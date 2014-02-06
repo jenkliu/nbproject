@@ -53,20 +53,25 @@
             var $options = $("<div>").addClass("display-controls");
             var $label = $("<label>").html("&#8592 Show:");
             var $show_annotations = $("<label>")
+                .addClass("display-control")
                 .append("<input type='checkbox' checked='checked'/>")
-                .append("<span class='selection annotation'> annotations</span>")
+                .append("<span class='annotation-label'>annotations</span>")
                 .click(function() {
                     $(".annotation").toggle();
                 });
             var $show_my_highlights = $("<label>")
-                .html("<input type='checkbox' checked='checked'/> my highlights")
+                .addClass("display-control")
+                .append("<input type='checkbox' checked='checked'/>")
+                .append("<span class='my-highlight'>my highlights</span>")
                 .click(function() {
-                    $(".my-highlight").toggle();
+                    $(".highlight.my-highlight").toggle();
                 });
             var $show_others_highglights = $("<label>")
-                .html("<input type='checkbox'/> others' highlights")
+                .addClass("display-control")
+                .append("<input type='checkbox'/>")
+                .append("<span class='other-highlight'>others' highlights</span>")
                 .click(function() {
-                    $(".other-highlight").toggle();
+                    $(".highlight.other-highlight").toggle();
                 });
 
             $options.append($label).append($show_annotations).append($show_my_highlights).append($show_others_highglights);

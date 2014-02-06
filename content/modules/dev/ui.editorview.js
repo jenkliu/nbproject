@@ -286,7 +286,7 @@
                 $("button[action=discard]",self.element).click(f_discard);
                 if (self._sel){
                     var p = self._selection.parent();
-                    var highlight_btn = "<button action='save' class='highlight-btn'>Just highlight</button>";
+                    var highlight_btn = "<button action='save' class='highlight-btn'></button>";
                     self._sel.addClass("ui-drawable-selection").removeClass("ui-drawable-helper").append(highlight_btn).appendTo(p).draggable({drag: f_sel, containment: 'parent' });
                     $("button[action=save]", p).click(f_save);
                     //animate transition so user understands that the editor is connected to the selection

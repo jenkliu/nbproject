@@ -538,9 +538,9 @@
             var c =  model.get("comment", {ID_location: o.ID, id_parent: null}).first();
             if (c===null || c.body.replace(/\s/g, "") === "") {    // empty comment, consider it a highlight
                 if (c.id_author===me.id) {
-                    contents+=("<div class='highlight my-highlight' id_item='"+ID+"' style='top: "+t+"px; left: "+l+"px; width: "+w+"px; height: "+h+"px'>"+sel_contents+"</div>");
+                    contents+=("<div class='highlight my-highlight' id_item='"+ID+"' style='top: "+t+"px; left: "+l+"px; width: "+w+"px; height: "+h+"px'></div>");
                 } else {
-                    contents+=("<div class='highlight other-highlight' id_item='"+ID+"' style='top: "+t+"px; left: "+l+"px; width: "+w+"px; height: "+h+"px'>"+sel_contents+"</div>");
+                    contents+=("<div class='highlight other-highlight' id_item='"+ID+"' style='top: "+t+"px; left: "+l+"px; width: "+w+"px; height: "+h+"px'></div>");
                 }
             } else {
                 sel_contents = "";

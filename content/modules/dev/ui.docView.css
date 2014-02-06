@@ -44,7 +44,7 @@ div.docView img.material{
 	user-drag: none;
 }
 
-div.docView div.selection{
+div.docView div.selection, span.selection{
 position: absolute;
 border: thin solid #777777;
 opacity: 0.3;
@@ -203,17 +203,39 @@ float: right
 .highlight {
     position: absolute;
 /*border: thin solid #777777;*/
-    opacity: 0.3;
     z-index: 2;
     /*border-radius: 5px;*/
     overflow: hidden;
 }
 
 .my-highlight {
-    background-color: #F6B3E4;
+    background-color: rgba(246, 179, 228, 0.3);
 }
 
 .other-highlight {
-    background-color: #80EE92;
-    display:none;
+    background-color: rgba(128, 238, 146, 0.3);
+}
+
+.highlight.other-highlight {
+    display: none;
+}
+
+.annotation-label {
+    border: thin solid #777777;
+    opacity: 0.3;
+    z-index: 2;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.display-control {
+    padding: 4px 15px 4px 5px;
+}
+
+.display-control span {
+    padding: 3px 10px;
+}
+
+.display-controls {
+    padding: 10px;
 }
