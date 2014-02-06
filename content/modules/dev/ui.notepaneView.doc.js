@@ -49,6 +49,29 @@
 
             self.element.addClass("notepaneView");
 
+            var $show_options = $("<div>").addClass("show-options");
+            var $options = $("<div>").addClass("display-controls");
+            var $label = $("<label>").html("&#8592 Show:");
+            var $show_annotations = $("<label>")
+                .append("<input type='checkbox' checked='checked'/>")
+                .append("<span class='selection annotation'> annotations</span>")
+                .click(function() {
+                    $(".annotation").toggle();
+                });
+            var $show_my_highlights = $("<label>")
+                .html("<input type='checkbox' checked='checked'/> my highlights")
+                .click(function() {
+                    $(".my-highlight").toggle();
+                });
+            var $show_others_highglights = $("<label>")
+                .html("<input type='checkbox'/> others' highlights")
+                .click(function() {
+                    $(".other-highlight").toggle();
+                });
+
+            $options.append($label).append($show_annotations).append($show_my_highlights).append($show_others_highglights);
+            $show_options.append($options);
+
             var $header = $("<div>").addClass("notepaneView-header");
             var $filters = $("<div>").addClass("filter-controls");
             var $filter_me = $("<a>")
@@ -108,7 +131,7 @@
 
             $filters.append($filter_me).append($filter_star).append($filter_question).append($filter_advanced);
             $header.append($filters).append($filtered_message).append($unfiltered_message);
-            self.element.append($header).append($notepaneView_pages);
+            self.element.append($show_options).append($header).append($notepaneView_pages);
 
             if (window.location.href.indexOf("?filter") === -1) {
                 $filter_advanced.remove();

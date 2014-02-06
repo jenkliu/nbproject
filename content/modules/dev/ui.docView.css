@@ -201,7 +201,12 @@ float: right
 }
 
 .highlight {
-    display: none;
+    position: absolute;
+/*border: thin solid #777777;*/
+    opacity: 0.3;
+    z-index: 2;
+    /*border-radius: 5px;*/
+    overflow: hidden;
 }
 
 .my-highlight {
@@ -210,4 +215,5 @@ float: right
 
 .other-highlight {
     background-color: #80EE92;
+    display:none;
 }
