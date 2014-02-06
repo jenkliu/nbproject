@@ -263,7 +263,7 @@
         _update_filters: function(){
         var self = this;
         var m = self._model;
-        var locs = m.get("location", {id_source:  self._id_source});
+        var locs = m.get("location", {id_source:  self._id_source}).exclude({body:""});
         var me = $.concierge.get_component("get_userinfo")();
         var n_unfiltered = locs.length();
         var filters_on = false;
@@ -448,7 +448,7 @@
         if (!(page in self._pages)){
             var m    = self._model;
             var $pane    = $("div.notepaneView-comments[page="+page+"]", self.element).empty();
-            var locs    = m.get("location", {id_source:  self._id_source, page: page });
+            var locs    = m.get("location", {id_source:  self._id_source, page: page }).exclude({body:""});
             var me = $.concierge.get_component("get_userinfo")();
             if (self._filters.me){
             locs = locs.intersect(m.get("comment", {id_author: me.id}).values("ID_location"));
@@ -469,7 +469,6 @@
             }
 
             var admin = m.get("ensemble", {}).first().admin === true;
-
             locs_array.forEach(function(o) {
                 var c =  m.get("comment", {ID_location: o.ID, id_parent: null}).first();  
                 if (!(c===null || c.body.replace(/\s/g, "") === "")) {  // don't show empty comments
